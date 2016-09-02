@@ -13,9 +13,14 @@ plugins/
 # when use sass, do not commit css files
 /www/css/
 /www/lib/
+# Ignore docs files
+.sass-cache
+.sass-cache/*
 
 # do not commit generated images
 /resources/android/
 /resources/ios/
 
+# do not commit generated logs
+*.log
 *~
