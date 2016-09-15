@@ -1,10 +1,10 @@
 (function(){
   'use strict';
-  angular.module('app', ['ionic'])
+  angular.module('app', ['ionic','LocalStorageModule'])
     .config(configBlock)
     .run(runBlock);
 
-  function configBlock($stateProvider, $urlRouterProvider, $provide){
+  function configBlock($stateProvider, $urlRouterProvider, $provide, $localStorageServiceProvider){
     $stateProvider
     .state('loading', {
       url: '/loading',
@@ -71,6 +71,7 @@
         Logger.error('Angular error: '+data.message, {cause: data.cause, stack: data.stack});
       };
     }]);
+    $localStorageServiceProvider.setPrefix('casmap');
   }
 
   // catch JavaScript errors
