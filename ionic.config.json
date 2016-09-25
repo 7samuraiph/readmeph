@@ -1,6 +1,6 @@
 {
-  "name": "ionic-starter",
-  "app_id": "",
+  "name": "CASMAP",
+  "app_id": "casmap",
   "gulpStartupTasks": [
     "sass",
     "watch"
