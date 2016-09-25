@@ -1,17 +1,13 @@
-(function(){
-  'use strict';
-  var myApp=angular.module('app', ['ionic','LocalStorageModule'])
+/// <reference path='../_all.ts' />
+
+module app {
+    'use strict';
+
+    var casmap = angular.module('app', ['ionic','LocalStorageModule'])
     .config(configBlock)
     .run(runBlock);
-
-/*myApp.config(function (localStorageServiceProvider) {
-  localStorageServiceProvider
-    .setPrefix('casmap')
-    .setStorageType('sessionStorage')
-    .setNotify(true, true)
-});*/
     
-  function configBlock($stateProvider, $urlRouterProvider, $provide, $ls){
+    function configBlock($stateProvider, $urlRouterProvider, $provide, $ls){
     $stateProvider
     .state('loading', {
       url: '/loading',
@@ -118,4 +114,4 @@
       }
     };
   }
-})();
+}

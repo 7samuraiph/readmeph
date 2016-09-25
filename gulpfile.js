@@ -6,15 +6,18 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var ts = require('gulp-typescript');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+    sass: ['./scss/**/*.scss'],
+    ts: ['./www/app/*.ts','./www/app/**/*.ts','./www/app/**/**/*.ts']
 };
+
 
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+  gulp.src(paths.sass)
     .pipe(sass())
     .on('error', sass.logError)
     .pipe(gulp.dest('./www/css/'))
@@ -26,9 +29,17 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+gulp.task('ts', function(done) {
+  gulp.src(paths.ts)
+    .pipe(ts())
+    .pipe(gulp.dest('./www/js/'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.ts, ['ts']);
 });
+
 
 gulp.task('install', ['git-check'], function() {
   return bower.commands.install()
@@ -46,6 +57,6 @@ gulp.task('git-check', function(done) {
       '\n  Once git is installed, run \'' + gutil.colors.cyan('gulp install') + '\' again.'
     );
     process.exit(1);
-  }
-  done();
+    }
+    done();
 });
